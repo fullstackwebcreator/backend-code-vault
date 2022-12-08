@@ -12,6 +12,13 @@ import DataStoredInToken from "interfaces/dataStoredInToken"
 import WrongCredentialsException from "exceptions/WrongCredentialsException"
 import User from "interfaces/user.interface"
 
+declare module "express-session" {
+  interface SessionData {
+    user: User
+    view: any
+    cookie: Cookie
+  }
+}
 class AuthenticationController implements Controller {
   public path = "/auth"
   public router = Router()
@@ -59,7 +66,7 @@ class AuthenticationController implements Controller {
     request: Request,
     response: Response,
     next: NextFunction
-  ) => {
+	) => {
 		const logInData: LoginDto = request.body
 		const user = await this.user.findOne({ username: logInData.username })
 		if (user) {
