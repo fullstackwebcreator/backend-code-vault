@@ -1,41 +1,35 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { IsString } from "class-validator"
 
-@Entity()
-class Product {
-  @PrimaryGeneratedColumn()
-  public id: string
-
-  @Column()
+class ProductDto {
+  @IsString()
   public pdname: string
 
-  @Column()
+  @IsString()
   public pimg: string
 
-  @Column()
+  @IsString()
   public images: string
 
-  @Column("simple-array")
   public cids: string[]
 
-  @Column()
+  @IsString()
   public catname: string
 
-  @Column()
+  @IsString()
   public brand: string
 
-  @Column()
+  @IsString()
   public variantId: string
 
-  @Column()
+  @IsString()
   public mrp: string
 
-  @Column()
+  @IsString()
   public offerprice: string
 
-  @Column()
+  @IsString()
   public totalQuantity: string
 
-  @Column("simple-json")
   public uomSingularPlural: {
     singular: string
     plural: string
@@ -43,4 +37,4 @@ class Product {
   }
 }
 
-export default Product
+export default ProductDto
